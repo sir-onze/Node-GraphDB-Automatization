@@ -46,8 +46,10 @@ if ( len(sys.argv)>2 ):
         ## enviar o ficheiro de configuração do repositorio
         print(" ## A enviar o ficheiro de configuração do repositorio ##")
         child2 = pexpect.spawn ('scp files/config.ttl onze@45.76.32.59:/home/onze/GraphDB/graphdb-free-9.2.0/bin')
-        child2.expect ('onze@45.76.32.59\'s password:')
-        child2.sendline(password)
+        value = username + '@'+hostname + '\'s password:'
+        child.expect (value)
+        child.sendline(password)
+        child.expect(pexpect.EOF, timeout=50)
 
 
         ## Ligar por ssh para executar os comandos de instalação 
